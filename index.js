@@ -1,4 +1,4 @@
-// Selecting elements
+
 let openShopping = document.querySelector('.shopping');
 let closeShopping = document.querySelector('.closeShopping');
 let list = document.querySelector('.list');
@@ -7,7 +7,7 @@ let body = document.querySelector('body');
 let total = document.querySelector('.total');
 let quantity = document.querySelector('.quantity');
 
-// Event listeners
+
 openShopping.addEventListener('click', () => {
     body.classList.add('active');
 });
@@ -16,56 +16,56 @@ closeShopping.addEventListener('click', () => {
     body.classList.remove('active');
 });
 
-// Products array with sizes
+
 let products = [
     {
         id: 1,
         name: 'Nike Waffles',
         image: 'nike1.png',
         price: 160000, 
-        sizes: ['5', '6', '7', '8', '9'] // Available sizes
+        sizes: ['5', '6', '7', '8', '9']
     },
     {
         id: 2,
         name: 'Nike AirMax X OffWhite',
         image: 'nike2.png',
         price: 480000,
-        sizes: ['5', '6', '7', '8', '9'] // Available sizes
+        sizes: ['5', '6', '7', '8', '9']
     },
     {
         id: 3,
         name: 'Nike AirMax',
         image: 'nike3.png',
         price: 230000,
-        sizes: ['5', '6', '7', '8', '9'] // Available sizes
+        sizes: ['5', '6', '7', '8', '9']
     },
     {
         id: 4,
         name: 'Nike VapourMax',
         image: 'nike4.png',
         price: 260000,
-        sizes: ['5', '6', '7', '8', '9'] // Available sizes
+        sizes: ['5', '6', '7', '8', '9']
     },
     {
         id: 5,
         name: 'Nike AirMax 1.7',
         image: 'nike5.png',
         price: 220000,
-        sizes: ['5', '6', '7', '8', '9'] // Available sizes
+        sizes: ['5', '6', '7', '8', '9']
     },
     {
         id: 6,
         name: 'Nike Runners',
         image: 'nike6.png',
         price: 160000,
-        sizes: ['5', '6', '7', '8', '9'] // Available sizes
+        sizes: ['5', '6', '7', '8', '9']
     }
 ];
 
-// Array to hold selected products
+
 let listCards = [];
 
-// Function to initialize the application
+
 function initApp() {
     products.forEach((value, key) => {
         let newDiv = document.createElement('div');
@@ -73,14 +73,14 @@ function initApp() {
         newDiv.innerHTML = `
             <img src="images/${value.image}" class="product-image">
             <div class="title">${value.name}</div>
-            <div class="price">R${(value.price / 100).toFixed(2)}</div>`; // Convert cents to rands
+            <div class="price">R${(value.price / 100).toFixed(2)}</div>`;
         
-        // Create a label for available sizes
+
         let sizeLabel = document.createElement('label');
         sizeLabel.textContent = "Available Sizes: ";
         newDiv.appendChild(sizeLabel);
 
-        // Create a select element for size selection
+
         let sizeSelect = document.createElement('select');
         sizeSelect.classList.add('size-select');
         value.sizes.forEach(size => {
@@ -96,10 +96,10 @@ function initApp() {
     });
 }
 
-// Initialize the application
+
 initApp();
 
-// Function to add product to the card
+
 function addToCard(key) {
     let selectedSize = list.querySelectorAll('.size-select')[key].value;
     if (listCards[key] == null) {
@@ -110,7 +110,7 @@ function addToCard(key) {
     reloadCard();
 }
 
-// Function to reload the card with updated quantities and prices
+
 function reloadCard() {
     listCard.innerHTML = '';
     let count = 0;
@@ -124,7 +124,7 @@ function reloadCard() {
                 <div><img src="images/${value.image}"/></div>
                 <div>${value.name}</div>
                 <div>Size: ${value.size}</div>
-                <div>Price: R${(value.price / 100).toFixed(2)}</div>`; // Convert cents to rands
+                <div>Price: R${(value.price / 100).toFixed(2)}</div>`; 
             newDiv.innerHTML += `
                 <div>
                     <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
@@ -134,11 +134,11 @@ function reloadCard() {
             listCard.appendChild(newDiv);
         }
     });
-    total.innerText = `Total: R${(totalPrice / 100).toFixed(2)}`; // Convert cents to rands
+    total.innerText = `Total: R${(totalPrice / 100).toFixed(2)}`; 
     quantity.innerText = count;
 }
 
-// Function to change quantity of a product in the card
+
 function changeQuantity(key, quantity) {
     if (quantity == 0) {
         delete listCards[key];
